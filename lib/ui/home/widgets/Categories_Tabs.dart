@@ -4,8 +4,8 @@ import 'package:newsapp1/models/Category.dart';
 import 'package:newsapp1/ui/home/widgets/Catecory_Widget.dart';
 
 class CategoriesTab extends StatelessWidget {
-  const CategoriesTab({super.key});
-
+  const CategoriesTab({super.key, required this.onTap});
+  final void Function(String) onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +25,9 @@ class CategoriesTab extends StatelessWidget {
                     ), 
               itemBuilder: (context, index) =>CatecoryWidget(
                 categoryModel: CategoryModel.AllCategories[index], 
-                index: index) ,
+                index: index,
+                onTap: onTap,
+                ) ,
               itemCount: CategoryModel.AllCategories.length,
               ),
           ),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:newsapp1/main.dart';
 import 'package:newsapp1/ui/home/widgets/DrawerItem.dart';
-
+typedef selectab = void Function(Tabenum);
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
-
+  const CustomDrawer({super.key , required this.onpress});
+    final selectab onpress ;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,15 +24,23 @@ class CustomDrawer extends StatelessWidget {
           DrawerItem(
             icon: Icons.list,
             title: "Categories",
-            ontap: (){},
+            ontap:(){
+              onpress(Tabenum.Categories);
+            },
           ),
           SizedBox(height: 25.h,),
           DrawerItem(
             icon: Icons.settings,
             title: "Settings",
-            ontap: (){},
+            ontap: (){
+              onpress(Tabenum.Settings);
+            },
           ),
       ],
     );
   }
+}
+enum Tabenum{
+  Categories,
+  Settings,
 }
