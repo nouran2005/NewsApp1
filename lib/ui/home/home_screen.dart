@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp1/ui/home/widgets/Categories_Tabs.dart';
 import 'package:newsapp1/ui/home/widgets/customDrawer.dart';
-
+typedef selectab = void Function();
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   static const String routeName = "home";
