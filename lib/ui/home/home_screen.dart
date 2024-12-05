@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:newsapp1/ui/CategoryDetail/widgets/CategoryDetailWidget.dart';
 import 'package:newsapp1/ui/home/widgets/Categories_Tabs.dart';
@@ -9,8 +7,6 @@ import 'package:newsapp1/ui/home/widgets/customDrawer.dart';
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key,});
   static const String routeName = "home";
-
-  
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

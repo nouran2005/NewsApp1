@@ -6,8 +6,8 @@
 /// language : "en"
 /// country : "gb"
 
-class Sources {
-  Sources({
+class Source {
+  Source({
     this.id,
     this.name,
     this.description,
@@ -17,7 +17,7 @@ class Sources {
     this.country,
   });
 
-  Sources.fromJson(dynamic json) {
+  Source.fromJson(dynamic json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];

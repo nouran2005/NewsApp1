@@ -1,19 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:newsapp1/models/ArticleModel.dart';
+import 'package:newsapp1/models/articleResponse/Article.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ArticleItem extends StatelessWidget {
   ArticleItem({super.key, required this.news});
-   final ArticleModel news;
+   final Article news;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CachedNetworkImage(
-        imageUrl: news.image ,
+        imageUrl: news.urlToImage ?? "" ,
         height: 234.h, 
         width: double.infinity,
         fit: BoxFit.cover,
@@ -22,7 +22,7 @@ class ArticleItem extends StatelessWidget {
      ),
         SizedBox(height: 10.h,),
         Text(
-          news.source?? "",
+          news.source?.name?? "",
           style: TextStyle(color: Colors.grey, fontSize: 14),
         ),
         Text(
@@ -32,7 +32,7 @@ class ArticleItem extends StatelessWidget {
         Align(
           alignment: Alignment.centerRight,
           child: Text(
-            timeago.format(news.date),
+            timeago.format(DateTime.parse(news.publishedAt??"")),
             style: TextStyle(color: Colors.grey, fontSize: 14),
           ),
         ),

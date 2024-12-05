@@ -1,4 +1,4 @@
-import 'Sources.dart';
+import 'package:newsapp1/models/sourceResponse/Source.dart';
 
 /// status : "ok"
 /// code : "apiKeyInvalid"
@@ -20,14 +20,14 @@ class SourceResponse {
     if (json['sources'] != null) {
       sources = [];
       json['sources'].forEach((v) {
-        sources?.add(Sources.fromJson(v));
+        sources?.add(Source.fromJson(v));
       });
     }
   }
   String? status;
   String? code;
   String? message;
-  List<Sources>? sources;
+  List<Source>? sources;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

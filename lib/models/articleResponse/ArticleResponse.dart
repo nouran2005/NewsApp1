@@ -1,4 +1,4 @@
-import 'Articles.dart';
+import 'Article.dart';
 
 /// status : "ok"
 /// code : "apiKeyInvalid"
@@ -23,7 +23,7 @@ class ArticleResponse {
     if (json['articles'] != null) {
       articles = [];
       json['articles'].forEach((v) {
-        articles?.add(Articles.fromJson(v));
+        articles?.add(Article.fromJson(v));
       });
     }
   }
@@ -31,7 +31,7 @@ class ArticleResponse {
   String? code;
   String? message;
   num? totalResults;
-  List<Articles>? articles;
+  List<Article>? articles;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

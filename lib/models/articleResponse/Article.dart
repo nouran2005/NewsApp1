@@ -1,4 +1,4 @@
-import 'Source.dart';
+import 'package:newsapp1/models/sourceResponse/Source.dart';
 
 /// source : {"id":"bbc-news","name":"BBC News"}
 /// author : "Jake Wood"
@@ -9,8 +9,8 @@ import 'Source.dart';
 /// publishedAt : "2024-12-03T18:31:55Z"
 /// content : "According to Mr Healy, about 40 people would regularly attend morning Mass at Askey Church. \r\nHe described the attendance of about 300 people to the funeral Mass held for Mary as demonstrating \"a gre… [+429 chars]"
 
-class Articles {
-  Articles({
+class Article {
+  Article({
     this.source,
     this.author,
     this.title,
@@ -21,7 +21,7 @@ class Articles {
     this.content,
   });
 
-  Articles.fromJson(dynamic json) {
+  Article.fromJson(dynamic json) {
     source = json['source'] != null ? Source.fromJson(json['source']) : null;
     author = json['author'];
     title = json['title'];
