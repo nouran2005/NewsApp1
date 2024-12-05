@@ -1,41 +1,136 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp1/models/ArticleModel.dart';
+import 'package:newsapp1/models/articleResponse/ArticleResponse.dart';
+import 'package:newsapp1/remote/ApiManeger.dart';
 import 'package:newsapp1/ui/CategoryDetail/widgets/ArticleItem.dart';
+/*
+class newsListWidget extends StatefulWidget {
+  newsListWidget({super.key, required this.sourceID});
+  final String sourceID;
 
-class newsListWidget extends StatelessWidget {
-  newsListWidget({super.key});
-  static List<ArticleModel> articles = [
-    ArticleModel(
-      image: "https://st4.depositphotos.com/4231139/23240/i/450/depositphotos_232401798-stock-photo-sunset-and-big-old-tree.jpg",
-      title: "Why are football's biggest clubs starting a new tournament?",
-      date: DateTime.now(),
-      source: "BBC News"
-    ),
-    ArticleModel(
-      image: "https://st4.depositphotos.com/4231139/23240/i/450/depositphotos_232401798-stock-photo-sunset-and-big-old-tree.jpg",
-      title: "Why are football's biggest clubs starting a new tournament?",
-      date: DateTime.now(),
-      source: "BBC News"
-    ),
-    ArticleModel(
-      image: "https://st4.depositphotos.com/4231139/23240/i/450/depositphotos_232401798-stock-photo-sunset-and-big-old-tree.jpg",
-      title: "Why are football's biggest clubs starting a new tournament?",
-      date: DateTime.now().subtract(Duration(hours: 5)),
-      source: "BBC News"
-    ),
-    ArticleModel(
-      image: "https://st4.depositphotos.com/4231139/23240/i/450/depositphotos_232401798-stock-photo-sunset-and-big-old-tree.jpg",
-      title: "Why are football's biggest clubs starting a new tournament?",
-      date: DateTime.now().subtract(Duration(days: 5)),
-      source: "BBC News"
-    ),
-    
-  ];
+  @override
+  State<newsListWidget> createState() => _newsListWidgetState();
+}
+
+class _newsListWidgetState extends State<newsListWidget> {
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
+    return FutureBuilder(
+      future: Apimaneger.getAriticles(widget.sourceID) , 
+      builder:(context, snapshot) {
+         if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (snapshot.hasError) {
+          return Column(
+            children: [
+              Text(snapshot.error.toString()),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  child: Text("Try Again"))
+            ],
+          );
+        }
+        var response = snapshot.data;
+        if (response?.status == "error") {
+          return Column(
+            children: [
+              Text(response?.message ?? ""),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  child: Text("Try Again"))
+            ],
+          );
+        }
+        var articles = response.articles ?? [];
+        return   ListView.separated(
       itemBuilder:(context, index) => ArticleItem(news: articles[index]) , 
       separatorBuilder:(context, index) =>  Divider(), 
-      itemCount: articles.length);
+      itemCount:articles.length);
+      },);
   }
 }
+*/
+class newsListWidget extends StatefulWidget {
+  final String sourceID;
+
+  newsListWidget({super.key, required this.sourceID});
+
+  @override
+  State<newsListWidget> createState() => _newsListWidgetState();
+}
+
+class _newsListWidgetState extends State<newsListWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: Apimaneger.getAriticles(widget.sourceID),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.hasError) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(snapshot.error.toString()),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {});
+                },
+                child: Text("Try Again"),
+              ),
+            ],
+          );
+        }
+        var response = snapshot.data;
+        if (response?.status == "error") {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(response?.status ?? "Error"),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {});
+                },
+                child: Text("Try Again"),
+              ),
+            ],
+          );
+        }
+
+        var articles = response?.articles ?? [];
+        if (articles.isEmpty) {
+          return Center(child: Text("No articles available."));
+        }
+
+        return ListView.separated(
+          itemBuilder: (context, index) => ArticleItem(news: articles[index]),
+          separatorBuilder: (context, index) => Divider(),
+          itemCount: articles.length,
+        );
+      },
+    );
+  }
+}
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+    
