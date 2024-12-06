@@ -5,7 +5,7 @@ import 'package:newsapp1/ui/home/widgets/Catecory_Widget.dart';
 
 class CategoriesTab extends StatelessWidget {
   const CategoriesTab({super.key, required this.onTap});
-  final void Function(String) onTap;
+  final void Function(String, String) onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -6,11 +6,11 @@ class CatecoryWidget extends StatelessWidget {
   const CatecoryWidget({super.key, required this.categoryModel, required this.index, required this.onTap});
   final CategoryModel categoryModel ;
   final int index ;
-  final void Function(String) onTap;
+  final void Function(String, String) onTap;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){onTap(categoryModel.id);},
+      onTap: (){onTap(categoryModel.id, categoryModel.title);},
       child: Container(
         padding: EdgeInsets.all(8),
         decoration:BoxDecoration(

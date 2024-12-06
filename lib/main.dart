@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
           themeMode: ThemeMode.light,
           routes: {
         HomeScreen.routeName :(_)=>HomeScreen(),
-
       },
       initialRoute: HomeScreen.routeName,
         );

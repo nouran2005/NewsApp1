@@ -35,10 +35,20 @@ class AppStyle {
           fontWeight: FontWeight.w700,
           color: Colors.white,
         ),
+        headlineSmall: TextStyle(
+          fontSize: 20.sp,
+          fontWeight: FontWeight.w500,
+          color: Colors.white,
+        ),
         titleMedium: TextStyle(
           fontSize: 22.sp,
           fontWeight: FontWeight.w700,
           color: AppColors.greyColor,
+        ),
+        titleSmall: TextStyle(
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.descriptionColor,
         )
       )
       
