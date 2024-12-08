@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:newsapp1/models/sourceResponse/Source.dart';
 import 'package:newsapp1/remote/ApiManeger.dart';
 import 'package:newsapp1/ui/CategoryDetail/NewsListWidget.dart';
 
 class Categorydetailwidget extends StatefulWidget {
   const Categorydetailwidget({super.key, required this.categoryID});
   final String categoryID;
+  //final String? searchQuery;
   /*static const List<String> sources =[
     "BBC news", "CBC news", "Sport news", "ABC news"
   ];*/
@@ -99,7 +99,7 @@ class _CategorydetailwidgetState extends State<Categorydetailwidget> {
                 Expanded(
                   child: TabBarView(
                     children: response?.sources
-                            ?.map((Source) => newsListWidget(sourceID: Source.id ?? "",))
+                            ?.map((Source) => newsListWidget(sourceID: Source.id ?? ""))
                             .toList() ??
                         [],
                   ),
@@ -108,8 +108,10 @@ class _CategorydetailwidgetState extends State<Categorydetailwidget> {
             ),
           ),
         );
-        ;
+        
       },
     );
   }
 }
+
+  

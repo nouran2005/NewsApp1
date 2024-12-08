@@ -3,9 +3,10 @@ import 'package:newsapp1/ui/CategoryDetail/widgets/CategoryDetailWidget.dart';
 import 'package:newsapp1/ui/home/widgets/Categories_Tabs.dart';
 import 'package:newsapp1/ui/home/widgets/Setteing_Tab.dart';
 import 'package:newsapp1/ui/home/widgets/customDrawer.dart';
+import 'package:newsapp1/ui/home/widgets/news_search.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key,});
+  HomeScreen({super.key});
   static const String routeName = "home";
 
   @override
@@ -13,55 +14,84 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late Widget selectedWidget ;
+  late Widget selectedWidget;
+  String appBarTitle = "News App";
+  bool searchIcon = false;
+  //bool isSearching = false;
+  //late TextEditingController SearchController;
+  String? searchQuery;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    selectedWidget = CategoriesTab(onTap: selectNewCategory,);
+    //SearchController = TextEditingController();
+    selectedWidget = CategoriesTab(onTap: selectNewCategory);
+    
   }
-
+/*
+  @override
+void dispose() {
+  SearchController.dispose();
+  super.dispose();
+}
+*/
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color:  Colors.white,
+        color: Colors.white,
         image: DecorationImage(
           image: AssetImage("assets/images/pattern.png"),
-          fit: BoxFit.fill
-          ),
+          fit: BoxFit.fill,
+        ),
       ),
       child: Scaffold(
-        drawer: Drawer(child: CustomDrawer(onpress: onSelectedTab,),),
+        drawer: Drawer(child: CustomDrawer(onpress: onSelectedTab)),
         appBar: AppBar(
-          title: Text(
-            "News App",
-            ),
-          
+          title:  Text(appBarTitle),
+          actions: searchIcon
+              ? [
+                  IconButton(
+                    onPressed: (){
+                      showSearch(context: context, delegate: NewsSearch());
+                    }, 
+                    icon: Icon(Icons.search))
+                ]
+              : null,
         ),
         body: selectedWidget,
       ),
     );
   }
+
   void onSelectedTab(Tabenum tab) {
-    
-      switch (tab) {
-        case Tabenum.Categories:
-          selectedWidget = CategoriesTab(onTap: selectNewCategory,);
-          break;
-        case Tabenum.Settings:
-          selectedWidget = SetteingTab(); 
-          break;
-      }
-      setState(() {
-    },
-    );
+    switch (tab) {
+      case Tabenum.Categories:
+        selectedWidget = CategoriesTab(onTap: selectNewCategory);
+        appBarTitle = "News App";
+        searchIcon = false;
+        //isSearching = false;
+        break;
+      case Tabenum.Settings:
+        selectedWidget = SetteingTab();
+        appBarTitle = "Settings";
+        searchIcon = false;
+        //isSearching = false;
+        break;
+    }
+    setState(() {});
     Navigator.pop(context);
-}
-  selectNewCategory(String ID){
-    selectedWidget = Categorydetailwidget(categoryID: ID,);
-    setState(() {
-      
-    });
   }
+
+  void selectNewCategory(String ID, String categoryTitle) {
+    selectedWidget = Categorydetailwidget(
+      categoryID: ID,
+    );
+    appBarTitle = categoryTitle;
+    searchIcon = true;
+    //isSearching = false;
+    setState(() {});
+  }
+
 }
+

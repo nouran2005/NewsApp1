@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp1/models/articleResponse/ArticleResponse.dart';
 import 'package:newsapp1/remote/ApiManeger.dart';
 import 'package:newsapp1/ui/CategoryDetail/widgets/ArticleItem.dart';
-/*
+
 class newsListWidget extends StatefulWidget {
   newsListWidget({super.key, required this.sourceID});
   final String sourceID;
@@ -17,7 +16,7 @@ class _newsListWidgetState extends State<newsListWidget> {
     return FutureBuilder(
       future: Apimaneger.getAriticles(widget.sourceID) , 
       builder:(context, snapshot) {
-         if (snapshot.connectionState == ConnectionState.waiting) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             child: CircularProgressIndicator(),
           );
@@ -47,7 +46,7 @@ class _newsListWidgetState extends State<newsListWidget> {
             ],
           );
         }
-        var articles = response.articles ?? [];
+        var articles = response?.articles ?? [];
         return   ListView.separated(
       itemBuilder:(context, index) => ArticleItem(news: articles[index]) , 
       separatorBuilder:(context, index) =>  Divider(), 
@@ -55,11 +54,13 @@ class _newsListWidgetState extends State<newsListWidget> {
       },);
   }
 }
-*/
+
+/*
 class newsListWidget extends StatefulWidget {
   final String sourceID;
+  final String? searchQuery;
 
-  newsListWidget({super.key, required this.sourceID});
+  newsListWidget({super.key, required this.sourceID, this.searchQuery,});
 
   @override
   State<newsListWidget> createState() => _newsListWidgetState();
@@ -121,7 +122,7 @@ class _newsListWidgetState extends State<newsListWidget> {
 
 
  
-
+*/
 
 
 

@@ -20,13 +20,12 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
-          title: 'Flutter Demo',
+          title: 'News App',
           debugShowCheckedModeBanner: false,
           theme: AppStyle.lightTheme,
           themeMode: ThemeMode.light,
           routes: {
         HomeScreen.routeName :(_)=>HomeScreen(),
-
       },
       initialRoute: HomeScreen.routeName,
         );
