@@ -12,14 +12,14 @@ class CatecoryWidget extends StatelessWidget {
     return InkWell(
       onTap: (){onTap(categoryModel.id, categoryModel.title);},
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: REdgeInsets.all(8),
         decoration:BoxDecoration(
           color: categoryModel.color,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(24),
-            topRight: Radius.circular(24),
-            bottomLeft: Radius.circular(index.isEven?24:0),
-            bottomRight: Radius.circular(index.isEven?0:24)
+            topLeft: Radius.circular(24.r),
+            topRight: Radius.circular(24.r),
+            bottomLeft: Radius.circular(index.isEven?24.r:0.r),
+            bottomRight: Radius.circular(index.isEven?0.r:24.r)
           )
         ),
         child: Column(

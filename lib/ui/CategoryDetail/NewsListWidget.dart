@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp1/remote/ApiManeger.dart';
 import 'package:newsapp1/ui/CategoryDetail/widgets/ArticleItem.dart';
-/*
+
 class newsListWidget extends StatefulWidget {
   newsListWidget({super.key, required this.sourceID});
   final String sourceID;
@@ -46,7 +46,7 @@ class _newsListWidgetState extends State<newsListWidget> {
             ],
           );
         }
-        var articles = response.articles ?? [];
+        var articles = response?.articles ?? [];
         return   ListView.separated(
       itemBuilder:(context, index) => ArticleItem(news: articles[index]) , 
       separatorBuilder:(context, index) =>  Divider(), 
@@ -54,7 +54,8 @@ class _newsListWidgetState extends State<newsListWidget> {
       },);
   }
 }
-*/
+
+/*
 class newsListWidget extends StatefulWidget {
   final String sourceID;
   final String? searchQuery;
@@ -69,7 +70,7 @@ class _newsListWidgetState extends State<newsListWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Apimaneger.getAriticles(widget.sourceID , searches: widget.searchQuery),
+      future: Apimaneger.getAriticles(widget.sourceID),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
@@ -105,13 +106,6 @@ class _newsListWidgetState extends State<newsListWidget> {
         }
 
         var articles = response?.articles ?? [];
-        if (widget.searchQuery != null && widget.searchQuery!.isNotEmpty) {
-          articles = articles
-              .where((article) =>
-                  article.title != null &&
-                  article.title!.toLowerCase().contains(widget.searchQuery!.toLowerCase()))
-              .toList();
-        }
         if (articles.isEmpty) {
           return Center(child: Text("No articles available."));
         }
@@ -128,7 +122,7 @@ class _newsListWidgetState extends State<newsListWidget> {
 
 
  
-
+*/
 
 
 
